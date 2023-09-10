@@ -22,7 +22,6 @@ public class GatewayClientApplication {
 		var apiPrefix = "/api/";
 		return rlb
 				.routes()
-				// <1>
 				.route(rs -> rs
 						.path(apiPrefix + "**")
 						.filters(f -> f
@@ -30,7 +29,6 @@ public class GatewayClientApplication {
 								.rewritePath(apiPrefix + "(?<segment>.*)", "/$\\{segment}")
 						)
 						.uri("http://localhost:8081"))
-				// <2>
 				.route(rs -> rs
 						.path("/**")
 						.uri("http://localhost:8020")// cdn for static assets
